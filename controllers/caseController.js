@@ -146,3 +146,60 @@ export const deleteCase = async (req, res) => {
     });
   }
 };
+
+
+
+export const getCaseById = async (req, res) => {
+  try {
+    const caseData = await Case.findById(req.params.id);
+
+    if (!caseData) {
+      return res.status(404).json({
+        message: "Case not found",
+      });
+    }
+
+    res.json({
+      case: caseData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch case",
+      error: error.message,
+    });
+  }
+};
+
+
+
+export const updateCase = async (req, res) => {
+  try {
+    const updatedCase = await Case.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedCase) {
+      return res.status(404).json({
+        message: "Case not found",
+      });
+    }
+
+    res.json({
+      message: "Case updated successfully",
+      case: updatedCase,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to update case",
+      error: error.message,
+    });
+  }
+};
+
+
+

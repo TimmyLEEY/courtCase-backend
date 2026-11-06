@@ -14,7 +14,8 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://courtcleark.netlify.app",
-      "https://courtcleark.org",
+        "https://courtclaerk.org",
+  "https://www.courtclaerk.org",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
